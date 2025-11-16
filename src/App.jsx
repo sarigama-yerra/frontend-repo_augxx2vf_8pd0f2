@@ -1,26 +1,21 @@
-import { useState } from 'react'
+import { useRef } from 'react'
+import Hero from './components/Hero'
+import RestaurantSearch from './components/RestaurantSearch'
+import Events from './components/Events'
+import OwnerDashboard from './components/OwnerDashboard'
+import Footer from './components/Footer'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const exploreRef = useRef(null)
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-white to-emerald-50">
+      <Hero onExplore={() => exploreRef.current?.scrollIntoView({behavior:'smooth'})} />
+      <div ref={exploreRef}>
+        <RestaurantSearch />
       </div>
+      <Events />
+      <OwnerDashboard />
+      <Footer />
     </div>
   )
 }
